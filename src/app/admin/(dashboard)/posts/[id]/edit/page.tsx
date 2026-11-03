@@ -340,6 +340,9 @@ export default function EditPostPage() {
                   if (!slugTouched) setSlug(slugify(e.target.value));
                 }}
                 placeholder="Tiêu đề bài viết..."
+                lang="vi"
+                autoComplete="off"
+                spellCheck={false}
                 className="w-full text-2xl font-black text-slate-900 placeholder-slate-300 border-none outline-none bg-transparent leading-tight"
               />
               <div className="flex items-center gap-2 pt-1 border-t border-slate-100">

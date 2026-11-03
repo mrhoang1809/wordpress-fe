@@ -1,0 +1,1430 @@
+{
+  "meta": {
+    "project": "viber-wordpress-fe",
+    "workspace": "e:/viber-wordpress/fe",
+    "built_at": "2025-07-14T00:00:00.000Z",
+    "total_nodes": 76,
+    "total_edges": 103,
+    "communities": 9
+  },
+  "nodes": [
+    {
+      "id": "file:app/layout",
+      "label": "app/layout.tsx",
+      "type": "FILE",
+      "community": "public-pages",
+      "path": "src/app/layout.tsx",
+      "exports": ["RootLayout", "metadata"],
+      "description": "Root Next.js layout. Wraps the whole app with PublicProviders (TanStack Query) and TrialRegistrationModal context."
+    },
+    {
+      "id": "file:app/page",
+      "label": "app/page.tsx",
+      "type": "FILE",
+      "community": "components-home",
+      "path": "src/app/page.tsx",
+      "exports": ["HomePage"],
+      "description": "Homepage (/) assembles all home section components: Header, Hero, WorkoutSection, LocationsSection, etc."
+    },
+    {
+      "id": "file:app/not-found",
+      "label": "app/not-found.tsx",
+      "type": "FILE",
+      "community": "public-pages",
+      "path": "src/app/not-found.tsx",
+      "exports": ["NotFound"],
+      "description": "Global 404 page."
+    },
+    {
+      "id": "file:app/public/layout",
+      "label": "(public)/layout.tsx",
+      "type": "FILE",
+      "community": "public-pages",
+      "path": "src/app/(public)/layout.tsx",
+      "exports": ["PublicLayout"],
+      "description": "Layout for public routes (/blog, /[...slug]). Adds Header, Footer, FloatingPromotionButton and TrialRegistrationModal."
+    },
+    {
+      "id": "file:app/public/blog/page",
+      "label": "(public)/blog/page.tsx",
+      "type": "FILE",
+      "community": "components-blog",
+      "path": "src/app/(public)/blog/page.tsx",
+      "exports": ["BlogPage", "metadata", "revalidate"],
+      "description": "Blog listing page. Server component that fetches posts and categories then passes them to the Blog component."
+    },
+    {
+      "id": "file:app/public/blog/slug/page",
+      "label": "(public)/blog/[slug]/page.tsx",
+      "type": "FILE",
+      "community": "components-blog",
+      "path": "src/app/(public)/blog/[slug]/page.tsx",
+      "exports": ["BlogDetailPage", "generateMetadata", "revalidate"],
+      "description": "Blog detail page. Fetches full post and related posts then renders BlogDetails."
+    },
+    {
+      "id": "file:app/public/stories/page",
+      "label": "(public)/stories/page.tsx",
+      "type": "FILE",
+      "community": "public-pages",
+      "path": "src/app/(public)/stories/page.tsx",
+      "exports": ["StoriesPage"],
+      "description": "Success stories listing page under /stories."
+    },
+    {
+      "id": "file:app/public/slug/page",
+      "label": "(public)/[...slug]/page.tsx",
+      "type": "FILE",
+      "community": "public-pages",
+      "path": "src/app/(public)/[...slug]/page.tsx",
+      "exports": ["PublicPageRoute", "generateMetadata", "revalidate"],
+      "description": "Dynamic CMS page renderer. Fetches page by slug and renders its blocks via BlockRenderer."
+    },
+    {
+      "id": "file:app/admin/layout",
+      "label": "admin/layout.tsx",
+      "type": "FILE",
+      "community": "admin-pages",
+      "path": "src/app/admin/layout.tsx",
+      "exports": ["AdminLayout", "metadata"],
+      "description": "Thin admin layout wrapper — just passes children through."
+    },
+    {
+      "id": "file:app/admin/providers",
+      "label": "admin/providers.tsx",
+      "type": "FILE",
+      "community": "auth",
+      "path": "src/app/admin/providers.tsx",
+      "exports": ["AdminProviders"],
+      "description": "Admin context providers: TanStack QueryClient + AuthBootstrap for session restoration."
+    },
+    {
+      "id": "file:app/admin/shell",
+      "label": "admin/shell.tsx",
+      "type": "FILE",
+      "community": "admin-pages",
+      "path": "src/app/admin/shell.tsx",
+      "exports": ["AdminLayoutShell"],
+      "description": "Dashboard shell with sidebar. Redirects to /admin/login if session is not valid after bootstrap."
+    },
+    {
+      "id": "file:app/admin/dashboard/layout",
+      "label": "admin/(dashboard)/layout.tsx",
+      "type": "FILE",
+      "community": "admin-pages",
+      "path": "src/app/admin/(dashboard)/layout.tsx",
+      "exports": ["AdminDashboardLayout"],
+      "description": "Protected dashboard layout. Composes AdminProviders + AdminLayoutShell."
+    },
+    {
+      "id": "file:app/admin/dashboard/page",
+      "label": "admin/(dashboard)/page.tsx",
+      "type": "FILE",
+      "community": "admin-pages",
+      "path": "src/app/admin/(dashboard)/page.tsx",
+      "exports": ["AdminPage"],
+      "description": "Admin dashboard overview page."
+    },
+    {
+      "id": "file:app/admin/auth/layout",
+      "label": "admin/(auth)/layout.tsx",
+      "type": "FILE",
+      "community": "auth",
+      "path": "src/app/admin/(auth)/layout.tsx",
+      "exports": ["AuthLayout"],
+      "description": "Login route group layout (no sidebar)."
+    },
+    {
+      "id": "file:app/admin/auth/login",
+      "label": "admin/(auth)/login/page.tsx",
+      "type": "FILE",
+      "community": "auth",
+      "path": "src/app/admin/(auth)/login/page.tsx",
+      "exports": ["LoginPage"],
+      "description": "Admin login page."
+    },
+    {
+      "id": "file:app/admin/promotions/page",
+      "label": "admin/promotions/page.tsx",
+      "type": "FILE",
+      "community": "admin-pages",
+      "path": "src/app/admin/promotions/page.tsx",
+      "exports": ["PromotionsPage"],
+      "description": "Admin promotions management page."
+    },
+    {
+      "id": "file:middleware",
+      "label": "middleware.ts",
+      "type": "FILE",
+      "community": "auth",
+      "path": "src/middleware.ts",
+      "exports": ["middleware", "config"],
+      "description": "Next.js middleware for /admin routes. Currently passes all admin traffic through to AuthBootstrap."
+    },
+    {
+      "id": "comp:HomePage",
+      "label": "HomePage",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/app/page.tsx",
+      "exports": [],
+      "description": "Root homepage component composing all public section components."
+    },
+    {
+      "id": "comp:RootLayout",
+      "label": "RootLayout",
+      "type": "COMPONENT",
+      "community": "public-pages",
+      "path": "src/app/layout.tsx",
+      "exports": [],
+      "description": "Root layout wrapping the whole app in PublicProviders and TrialRegistrationModal."
+    },
+    {
+      "id": "comp:PublicLayout",
+      "label": "PublicLayout",
+      "type": "COMPONENT",
+      "community": "public-pages",
+      "path": "src/app/(public)/layout.tsx",
+      "exports": [],
+      "description": "Layout for public route group with Header, Footer, FloatingPromotionButton."
+    },
+    {
+      "id": "comp:AnnouncementBar",
+      "label": "AnnouncementBar",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/AnnouncementBar.tsx",
+      "exports": ["AnnouncementBar"],
+      "description": "Top announcement bar that fetches the active promotion banner and displays it with CTA. Fallback to static content."
+    },
+    {
+      "id": "comp:Header",
+      "label": "Header",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/Header.tsx",
+      "exports": ["Header"],
+      "description": "Sticky navigation header with logo, nav links, CTA button, mobile drawer, and scroll-based glass effect."
+    },
+    {
+      "id": "comp:FloatingPromotionButton",
+      "label": "FloatingPromotionButton",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/FloatingPromotionButton.tsx",
+      "exports": ["FloatingPromotionButton"],
+      "description": "Floating CTA button fixed to bottom-right. Hidden when user is logged in. Scrolls to promotion section."
+    },
+    {
+      "id": "comp:HeroSection",
+      "label": "HeroSection",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/HeroSection.tsx",
+      "exports": ["HeroSection"],
+      "description": "Homepage hero section with headline, CTA, and brand imagery."
+    },
+    {
+      "id": "comp:WorkoutSection",
+      "label": "WorkoutSection",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/WorkoutSection.tsx",
+      "exports": ["WorkoutSection"],
+      "description": "Workout method showcase section."
+    },
+    {
+      "id": "comp:AdvantagesSection",
+      "label": "AdvantagesSection",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/AdvantagesSection.tsx",
+      "exports": ["AdvantagesSection"],
+      "description": "Advantages and equipment showcase section."
+    },
+    {
+      "id": "comp:BmiCalculatorSection",
+      "label": "BmiCalculatorSection",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/BmiCalculatorSection.tsx",
+      "exports": ["BmiCalculatorSection"],
+      "description": "Interactive BMI and calorie calculator section."
+    },
+    {
+      "id": "comp:LocationsSection",
+      "label": "LocationsSection",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/LocationsSection.tsx",
+      "exports": ["LocationsSection"],
+      "description": "Fetches and displays gym locations with city filter. Uses useQuery to call publicApi.listLocations()."
+    },
+    {
+      "id": "comp:SuccessStoriesSection",
+      "label": "SuccessStoriesSection",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/SuccessStoriesSection.tsx",
+      "exports": ["SuccessStoriesSection"],
+      "description": "Success stories section. Fetches posts with categorySlug='truyen-cam-hung' via useQuery. Has demo fallback."
+    },
+    {
+      "id": "comp:PromotionCountdownSection",
+      "label": "PromotionCountdownSection",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/PromotionCountdownSection.tsx",
+      "exports": ["PromotionCountdownSection"],
+      "description": "Promotion countdown banner. Fetches active promotion via promotionsApi.getActive() and renders a live countdown timer."
+    },
+    {
+      "id": "comp:FaqSection",
+      "label": "FaqSection",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/FaqSection.tsx",
+      "exports": ["FaqSection"],
+      "description": "FAQ accordion section."
+    },
+    {
+      "id": "comp:Footer",
+      "label": "Footer",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/Footer.tsx",
+      "exports": ["Footer"],
+      "description": "Site footer with links, social media, and contact info."
+    },
+    {
+      "id": "comp:TrialRegistrationModal",
+      "label": "TrialRegistrationModal",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/TrialRegistrationModal.tsx",
+      "exports": ["TrialRegistrationModal", "useTrialModal"],
+      "description": "Global modal for trial registration. Provides useTrialModal context hook used by Header, LocationsSection, and others."
+    },
+    {
+      "id": "comp:HomeProviders",
+      "label": "HomeProviders",
+      "type": "COMPONENT",
+      "community": "components-home",
+      "path": "src/components/home/HomeProviders.tsx",
+      "exports": ["HomeProviders"],
+      "description": "TanStack QueryClient provider wrapper for home page sections."
+    },
+    {
+      "id": "comp:PublicProviders",
+      "label": "PublicProviders",
+      "type": "COMPONENT",
+      "community": "public-pages",
+      "path": "src/components/home/PublicProviders.tsx",
+      "exports": ["PublicProviders"],
+      "description": "Root public QueryClientProvider. Wraps entire app in layout.tsx with 5-min staleTime."
+    },
+    {
+      "id": "comp:Blog",
+      "label": "Blog",
+      "type": "COMPONENT",
+      "community": "components-blog",
+      "path": "src/components/blog/Blog.tsx",
+      "exports": ["Blog", "BlogProps"],
+      "description": "Blog listing component with category tabs, search, and infinite scroll. Renders PostCard per post."
+    },
+    {
+      "id": "comp:BlogDetails",
+      "label": "BlogDetails",
+      "type": "COMPONENT",
+      "community": "components-blog",
+      "path": "src/components/blog/Details.tsx",
+      "exports": ["BlogDetails", "BlogDetailsProps"],
+      "description": "Full blog post detail component with TOC, blocks renderer, engagement (views/likes/comments), and sidebar."
+    },
+    {
+      "id": "comp:StoriesList",
+      "label": "StoriesList",
+      "type": "COMPONENT",
+      "community": "components-blog",
+      "path": "src/components/blog/StoriesList.tsx",
+      "exports": ["StoriesList"],
+      "description": "Success stories listing component."
+    },
+    {
+      "id": "comp:AdminSidebar",
+      "label": "AdminSidebar",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/components/layout/AdminSidebar.tsx",
+      "exports": ["AdminSidebar"],
+      "description": "Admin navigation sidebar with links to all admin sections. Uses useAuth for user info and logout."
+    },
+    {
+      "id": "comp:PublicHeader",
+      "label": "PublicHeader",
+      "type": "COMPONENT",
+      "community": "public-pages",
+      "path": "src/components/layout/PublicHeader.tsx",
+      "exports": ["PublicHeader"],
+      "description": "Alternative public header component."
+    },
+    {
+      "id": "comp:BlockRenderer",
+      "label": "BlockRenderer",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/components/blocks/BlockRenderer.tsx",
+      "exports": ["BlockRenderer"],
+      "description": "Renders an ordered list of PageBlocks using the BLOCK_REGISTRY. Used on public CMS pages and blog details."
+    },
+    {
+      "id": "comp:HeroBlock",
+      "label": "HeroBlock",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/components/blocks/HeroBlock.tsx",
+      "exports": ["HeroBlock"],
+      "description": "Public renderer for HERO block type."
+    },
+    {
+      "id": "comp:BannerBlock",
+      "label": "BannerBlock",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/components/blocks/BannerBlock.tsx",
+      "exports": ["BannerBlock"],
+      "description": "Public renderer for BANNER block type."
+    },
+    {
+      "id": "comp:RichTextBlock",
+      "label": "RichTextBlock",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/components/blocks/RichTextBlock.tsx",
+      "exports": ["RichTextBlock"],
+      "description": "Public renderer for RICH_TEXT block type."
+    },
+    {
+      "id": "comp:ImageBlock",
+      "label": "ImageBlock",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/components/blocks/ImageBlock.tsx",
+      "exports": ["ImageBlock"],
+      "description": "Public renderer for IMAGE block type."
+    },
+    {
+      "id": "comp:CtaBlock",
+      "label": "CtaBlock",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/components/blocks/CtaBlock.tsx",
+      "exports": ["CtaBlock"],
+      "description": "Public renderer for CTA block type."
+    },
+    {
+      "id": "comp:FaqBlock",
+      "label": "FaqBlock",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/components/blocks/FaqBlock.tsx",
+      "exports": ["FaqBlock"],
+      "description": "Public renderer for FAQ block type."
+    },
+    {
+      "id": "comp:PageEditor",
+      "label": "PageEditor",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/page-builder/components/PageEditor.tsx",
+      "exports": ["PageEditor"],
+      "description": "Full-page block editor used in admin. Composes BlockLibrary, BlockCard, and BlockSettingsPanel."
+    },
+    {
+      "id": "comp:BlockLibrary",
+      "label": "BlockLibrary",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/page-builder/components/BlockLibrary.tsx",
+      "exports": ["BlockLibrary"],
+      "description": "Panel listing available block types from BLOCK_REGISTRY for drag-and-add into pages."
+    },
+    {
+      "id": "comp:BlockCard",
+      "label": "BlockCard",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/page-builder/components/BlockCard.tsx",
+      "exports": ["BlockCard"],
+      "description": "Individual block card in the page editor with reorder controls."
+    },
+    {
+      "id": "comp:BlockSettingsPanel",
+      "label": "BlockSettingsPanel",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/page-builder/components/BlockSettingsPanel.tsx",
+      "exports": ["BlockSettingsPanel"],
+      "description": "Settings panel for editing a selected block's data via its editorForm from BLOCK_REGISTRY."
+    },
+    {
+      "id": "comp:AuthBootstrap",
+      "label": "AuthBootstrap",
+      "type": "COMPONENT",
+      "community": "auth",
+      "path": "src/features/auth/AuthBootstrap.tsx",
+      "exports": ["AuthBootstrap"],
+      "description": "Runs once on admin mount. Calls /auth/refresh silently, then /auth/me, and hydrates the Zustand auth store."
+    },
+    {
+      "id": "comp:AuthProvider",
+      "label": "AuthProvider",
+      "type": "FILE",
+      "community": "auth",
+      "path": "src/features/auth/AuthProvider.tsx",
+      "exports": ["useAuth"],
+      "description": "Compatibility shim re-exporting useAuth from useAuth.ts for backward compatibility."
+    },
+    {
+      "id": "file:store/auth",
+      "label": "auth.store.ts",
+      "type": "FILE",
+      "community": "store",
+      "path": "src/store/auth.store.ts",
+      "exports": ["useAuthStore", "getStoreToken", "setStoreToken"],
+      "description": "Zustand auth store. Holds accessToken (in-memory), user profile, bootstrapping state. Has getStoreToken/setStoreToken for use outside React."
+    },
+    {
+      "id": "code:useAuth",
+      "label": "useAuth",
+      "type": "CODE",
+      "community": "auth",
+      "path": "src/features/auth/useAuth.ts",
+      "exports": ["useAuth"],
+      "description": "Auth hook: reads Zustand store, provides login/logout actions backed by authApi."
+    },
+    {
+      "id": "file:lib/api-client",
+      "label": "api-client.ts",
+      "type": "FILE",
+      "community": "api-client",
+      "path": "src/lib/api-client.ts",
+      "exports": [
+        "authApi",
+        "pagesApi",
+        "postsApi",
+        "publicApi",
+        "mediaApi",
+        "categoriesApi",
+        "menusApi",
+        "settingsApi",
+        "subscribersApi",
+        "campaignsApi",
+        "templatesApi",
+        "locationsApi",
+        "promotionsApi",
+        "ApiError",
+        "BASE_URL"
+      ],
+      "description": "Central API client. Implements JWT Bearer auth with silent refresh on 401. Exports typed API namespaces for every backend module."
+    },
+    {
+      "id": "file:lib/auth-cookies",
+      "label": "auth-cookies.ts",
+      "type": "FILE",
+      "community": "auth",
+      "path": "src/lib/auth-cookies.ts",
+      "exports": ["REFRESH_TOKEN_COOKIE"],
+      "description": "Cookie name constants for auth cookies."
+    },
+    {
+      "id": "file:lib/utils",
+      "label": "utils.ts",
+      "type": "FILE",
+      "community": "api-client",
+      "path": "src/lib/utils.ts",
+      "exports": ["cn", "slugify", "formatDate", "spacingClass"],
+      "description": "Shared utilities: Tailwind class merging (cn), slugify, date formatting, spacing class mapping."
+    },
+    {
+      "id": "file:lib/demo-content",
+      "label": "demo-content.ts",
+      "type": "FILE",
+      "community": "public-pages",
+      "path": "src/lib/demo-content.ts",
+      "exports": ["DEMO_STORIES", "DEMO_LOCATIONS", "getDemoStoryPost"],
+      "description": "Static fallback demo data for when the API is unavailable (stories, locations, story post detail)."
+    },
+    {
+      "id": "file:lib/pagination",
+      "label": "pagination.ts",
+      "type": "FILE",
+      "community": "api-client",
+      "path": "src/lib/pagination.ts",
+      "exports": ["buildPaginationMeta"],
+      "description": "Pagination helper utilities."
+    },
+    {
+      "id": "file:types/index",
+      "label": "types/index.ts",
+      "type": "FILE",
+      "community": "types",
+      "path": "src/types/index.ts",
+      "exports": [
+        "BlockType",
+        "ContentStatus",
+        "Page",
+        "PublicPage",
+        "Post",
+        "PublicPost",
+        "PublicPostCard",
+        "PublicPostEngagement",
+        "Category",
+        "MenuItem",
+        "Menu",
+        "UserProfile",
+        "SiteSetting",
+        "Subscriber",
+        "MessageCampaign",
+        "MessageTemplate",
+        "Location",
+        "PromotionBanner",
+        "PaginatedResponse"
+      ],
+      "description": "Central TypeScript types mirroring backend contracts. All domain entities and API response shapes defined here."
+    },
+    {
+      "id": "code:BLOCK_REGISTRY",
+      "label": "BLOCK_REGISTRY",
+      "type": "CODE",
+      "community": "admin-pages",
+      "path": "src/features/page-builder/registry/block-registry.ts",
+      "exports": ["BLOCK_REGISTRY", "BLOCK_TYPES", "BlockRegistryEntry"],
+      "description": "Static registry mapping BlockType to publicRenderer, editorForm, meta, and defaultData. Single source of truth for block types."
+    },
+    {
+      "id": "code:usePages",
+      "label": "usePages",
+      "type": "CODE",
+      "community": "admin-pages",
+      "path": "src/features/page-builder/hooks/usePages.ts",
+      "exports": ["usePages"],
+      "description": "TanStack Query hook for fetching and mutating pages in the admin."
+    },
+    {
+      "id": "code:useIntersectionObserver",
+      "label": "useIntersectionObserver",
+      "type": "CODE",
+      "community": "public-pages",
+      "path": "src/hooks/useIntersectionObserver.ts",
+      "exports": ["useIntersectionObserver"],
+      "description": "Reusable intersection observer hook for infinite scroll in Blog component."
+    },
+    {
+      "id": "comp:CampaignsList",
+      "label": "CampaignsList",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/messaging/CampaignsList.tsx",
+      "exports": ["CampaignsList"],
+      "description": "Admin list of messaging campaigns."
+    },
+    {
+      "id": "comp:CampaignForm",
+      "label": "CampaignForm",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/messaging/CampaignForm.tsx",
+      "exports": ["CampaignForm"],
+      "description": "Form for creating/editing messaging campaigns."
+    },
+    {
+      "id": "comp:CampaignDetail",
+      "label": "CampaignDetail",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/messaging/CampaignDetail.tsx",
+      "exports": ["CampaignDetail"],
+      "description": "Campaign detail view with delivery stats."
+    },
+    {
+      "id": "comp:SubscribersManager",
+      "label": "SubscribersManager",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/messaging/SubscribersManager.tsx",
+      "exports": ["SubscribersManager"],
+      "description": "Subscriber management UI with import, list, edit."
+    },
+    {
+      "id": "comp:TemplatesManager",
+      "label": "TemplatesManager",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/messaging/TemplatesManager.tsx",
+      "exports": ["TemplatesManager"],
+      "description": "Message template management UI."
+    },
+    {
+      "id": "comp:ChannelShell",
+      "label": "ChannelShell",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/messaging/ChannelShell.tsx",
+      "exports": ["ChannelShell"],
+      "description": "Per-channel messaging shell (Zalo or Facebook) that composes ChannelNav, CampaignsList, SubscribersManager."
+    },
+    {
+      "id": "comp:ChannelNav",
+      "label": "ChannelNav",
+      "type": "COMPONENT",
+      "community": "admin-pages",
+      "path": "src/features/messaging/ChannelNav.tsx",
+      "exports": ["ChannelNav"],
+      "description": "Navigation tabs within a messaging channel."
+    },
+    {
+      "id": "file:messaging/channel",
+      "label": "channel.ts",
+      "type": "FILE",
+      "community": "admin-pages",
+      "path": "src/features/messaging/channel.ts",
+      "exports": ["CHANNELS", "ChannelConfig"],
+      "description": "Channel configuration types and constants for Zalo/Facebook messaging."
+    },
+    {
+      "id": "file:messaging/labels",
+      "label": "labels.ts",
+      "type": "FILE",
+      "community": "admin-pages",
+      "path": "src/features/messaging/labels.ts",
+      "exports": ["PLATFORM_LABELS", "STATUS_LABELS"],
+      "description": "Display label mappings for platform and campaign status enums."
+    },
+    {
+      "id": "file:tailwind.config",
+      "label": "tailwind.config.ts",
+      "type": "FILE",
+      "community": "types",
+      "path": "tailwind.config.ts",
+      "exports": [],
+      "description": "Tailwind CSS configuration with custom brand color palette, animation utilities, and typography plugin."
+    },
+    {
+      "id": "file:next.config",
+      "label": "next.config.ts",
+      "type": "FILE",
+      "community": "api-client",
+      "path": "next.config.ts",
+      "exports": [],
+      "description": "Next.js configuration including image domains, rewrites, and environment variables."
+    },
+    {
+      "id": "file:package.json-fe",
+      "label": "package.json",
+      "type": "FILE",
+      "community": "types",
+      "path": "package.json",
+      "exports": [],
+      "description": "Frontend package manifest. Key deps: Next.js 15, React 19, TanStack Query, Zustand, Tailwind CSS, Lucide React."
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/layout",
+      "target": "comp:PublicProviders",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/layout",
+      "target": "comp:TrialRegistrationModal",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/layout",
+      "target": "comp:RootLayout",
+      "type": "DEFINES",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:Header",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:FloatingPromotionButton",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:HeroSection",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:WorkoutSection",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:AdvantagesSection",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:BmiCalculatorSection",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:LocationsSection",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:SuccessStoriesSection",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:PromotionCountdownSection",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:FaqSection",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:Footer",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/page",
+      "target": "comp:TrialRegistrationModal",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/layout",
+      "target": "comp:Header",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/layout",
+      "target": "comp:Footer",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/layout",
+      "target": "comp:FloatingPromotionButton",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/layout",
+      "target": "comp:TrialRegistrationModal",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/blog/page",
+      "target": "comp:Blog",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/blog/page",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/blog/slug/page",
+      "target": "comp:BlogDetails",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/blog/slug/page",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/slug/page",
+      "target": "comp:BlockRenderer",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/public/slug/page",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/admin/providers",
+      "target": "comp:AuthBootstrap",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/admin/providers",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/admin/shell",
+      "target": "file:store/auth",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/admin/shell",
+      "target": "comp:AdminSidebar",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/admin/dashboard/layout",
+      "target": "file:app/admin/providers",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:app/admin/dashboard/layout",
+      "target": "file:app/admin/shell",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:AuthBootstrap",
+      "target": "file:store/auth",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:AuthBootstrap",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:AuthBootstrap",
+      "target": "file:lib/api-client",
+      "type": "CALLS",
+      "confidence": 1.0,
+      "note": "Calls BASE_URL/auth/refresh and authApi.me"
+    },
+    {
+      "source": "code:useAuth",
+      "target": "file:store/auth",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "code:useAuth",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "code:useAuth",
+      "target": "file:lib/api-client",
+      "type": "CALLS",
+      "confidence": 1.0,
+      "note": "Calls authApi.login and authApi.logout"
+    },
+    {
+      "source": "comp:AuthProvider",
+      "target": "code:useAuth",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:AdminSidebar",
+      "target": "comp:AuthProvider",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:AdminSidebar",
+      "target": "file:lib/utils",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:lib/api-client",
+      "target": "file:store/auth",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "file:lib/api-client",
+      "target": "file:types/index",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:AnnouncementBar",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:AnnouncementBar",
+      "target": "comp:TrialRegistrationModal",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:AnnouncementBar",
+      "target": "file:types/index",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:Header",
+      "target": "comp:AnnouncementBar",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:Header",
+      "target": "comp:TrialRegistrationModal",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:Header",
+      "target": "file:lib/utils",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:FloatingPromotionButton",
+      "target": "file:store/auth",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:LocationsSection",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:LocationsSection",
+      "target": "comp:TrialRegistrationModal",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:LocationsSection",
+      "target": "file:types/index",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:LocationsSection",
+      "target": "file:lib/demo-content",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:SuccessStoriesSection",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:SuccessStoriesSection",
+      "target": "comp:TrialRegistrationModal",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:SuccessStoriesSection",
+      "target": "file:lib/demo-content",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:PromotionCountdownSection",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:PromotionCountdownSection",
+      "target": "comp:TrialRegistrationModal",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:PromotionCountdownSection",
+      "target": "file:types/index",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:Blog",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:Blog",
+      "target": "file:types/index",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:Blog",
+      "target": "file:lib/utils",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:Blog",
+      "target": "code:useIntersectionObserver",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:BlogDetails",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:BlogDetails",
+      "target": "comp:BlockRenderer",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:BlogDetails",
+      "target": "comp:TrialRegistrationModal",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:BlogDetails",
+      "target": "file:lib/utils",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:BlogDetails",
+      "target": "file:types/index",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:BlockRenderer",
+      "target": "code:BLOCK_REGISTRY",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:BlockRenderer",
+      "target": "file:types/index",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "code:BLOCK_REGISTRY",
+      "target": "comp:HeroBlock",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "code:BLOCK_REGISTRY",
+      "target": "comp:BannerBlock",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "code:BLOCK_REGISTRY",
+      "target": "comp:RichTextBlock",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "code:BLOCK_REGISTRY",
+      "target": "comp:ImageBlock",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "code:BLOCK_REGISTRY",
+      "target": "comp:CtaBlock",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "code:BLOCK_REGISTRY",
+      "target": "comp:FaqBlock",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:SuccessStoriesSection",
+      "target": "file:lib/api-client",
+      "type": "FETCHES",
+      "confidence": 0.9,
+      "note": "publicApi.listPosts with categorySlug=truyen-cam-hung"
+    },
+    {
+      "source": "comp:LocationsSection",
+      "target": "file:lib/api-client",
+      "type": "FETCHES",
+      "confidence": 1.0,
+      "note": "publicApi.listLocations()"
+    },
+    {
+      "source": "comp:PromotionCountdownSection",
+      "target": "file:lib/api-client",
+      "type": "FETCHES",
+      "confidence": 1.0,
+      "note": "promotionsApi.getActive()"
+    },
+    {
+      "source": "comp:AnnouncementBar",
+      "target": "file:lib/api-client",
+      "type": "FETCHES",
+      "confidence": 1.0,
+      "note": "promotionsApi.getActive()"
+    },
+    {
+      "source": "comp:BlogDetails",
+      "target": "file:lib/api-client",
+      "type": "FETCHES",
+      "confidence": 1.0,
+      "note": "publicApi.getPostEngagement, likePost, recordPostView, createPostComment"
+    },
+    {
+      "source": "file:app/public/blog/page",
+      "target": "file:lib/api-client",
+      "type": "FETCHES",
+      "confidence": 1.0,
+      "note": "publicApi.listPosts + getCategoryTree"
+    },
+    {
+      "source": "file:app/public/slug/page",
+      "target": "file:lib/api-client",
+      "type": "FETCHES",
+      "confidence": 1.0,
+      "note": "publicApi.getPage"
+    },
+    {
+      "source": "comp:AuthBootstrap",
+      "target": "file:store/auth",
+      "type": "CALLS",
+      "confidence": 1.0,
+      "note": "setAuth / clearAuth"
+    },
+    {
+      "source": "code:useAuth",
+      "target": "file:store/auth",
+      "type": "CALLS",
+      "confidence": 1.0,
+      "note": "setAuth / clearAuth"
+    },
+    {
+      "source": "comp:FloatingPromotionButton",
+      "target": "file:store/auth",
+      "type": "CALLS",
+      "confidence": 1.0,
+      "note": "Reads user from store to conditionally hide"
+    },
+    {
+      "source": "file:lib/api-client",
+      "target": "file:store/auth",
+      "type": "CALLS",
+      "confidence": 1.0,
+      "note": "getStoreToken / setStoreToken for JWT management"
+    },
+    {
+      "source": "file:middleware",
+      "target": "file:lib/auth-cookies",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "code:usePages",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:PageEditor",
+      "target": "code:usePages",
+      "type": "USES",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:PageEditor",
+      "target": "comp:BlockLibrary",
+      "type": "USES",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:PageEditor",
+      "target": "comp:BlockSettingsPanel",
+      "type": "USES",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:PageEditor",
+      "target": "comp:BlockCard",
+      "type": "USES",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:BlockSettingsPanel",
+      "target": "code:BLOCK_REGISTRY",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:BlockLibrary",
+      "target": "code:BLOCK_REGISTRY",
+      "type": "USES",
+      "confidence": 1.0
+    },
+    {
+      "source": "comp:CampaignsList",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:CampaignForm",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:SubscribersManager",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:TemplatesManager",
+      "target": "file:lib/api-client",
+      "type": "IMPORTS",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:ChannelShell",
+      "target": "comp:CampaignsList",
+      "type": "USES",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:ChannelShell",
+      "target": "comp:SubscribersManager",
+      "type": "USES",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:ChannelShell",
+      "target": "comp:TemplatesManager",
+      "type": "USES",
+      "confidence": 0.9
+    },
+    {
+      "source": "comp:ChannelShell",
+      "target": "comp:ChannelNav",
+      "type": "USES",
+      "confidence": 0.9
+    }
+  ],
+  "communities": [
+    {
+      "id": "auth",
+      "label": "Authentication",
+      "description": "All auth-related files: Zustand store, AuthBootstrap, useAuth hook, admin providers, middleware, login page.",
+      "node_count": 8,
+      "cohesion": 0.88
+    },
+    {
+      "id": "public-pages",
+      "label": "Public Pages",
+      "description": "Root layout, (public) layout, CMS page route, stories page, and supporting utilities.",
+      "node_count": 10,
+      "cohesion": 0.72
+    },
+    {
+      "id": "admin-pages",
+      "label": "Admin Dashboard",
+      "description": "Admin dashboard layout, shell, all admin section pages, sidebar, and page-builder editor components.",
+      "node_count": 22,
+      "cohesion": 0.78
+    },
+    {
+      "id": "components-home",
+      "label": "Home Components",
+      "description": "All homepage section components: Header, Hero, Workout, Advantages, BMI, Locations, Stories, Promotion, FAQ, Footer, and modal.",
+      "node_count": 16,
+      "cohesion": 0.85
+    },
+    {
+      "id": "components-blog",
+      "label": "Blog Components",
+      "description": "Blog listing (Blog.tsx), Blog detail (Details.tsx), StoriesList, and blog route pages.",
+      "node_count": 5,
+      "cohesion": 0.8
+    },
+    {
+      "id": "api-client",
+      "label": "API Client Layer",
+      "description": "api-client.ts as the central HTTP layer plus utilities (utils.ts, pagination.ts) and next.config.ts.",
+      "node_count": 5,
+      "cohesion": 0.82
+    },
+    {
+      "id": "store",
+      "label": "State Management",
+      "description": "Zustand auth store as the single runtime state store.",
+      "node_count": 1,
+      "cohesion": 1.0
+    },
+    {
+      "id": "types",
+      "label": "Type Definitions",
+      "description": "Central TypeScript type definitions, Tailwind config, and package.json.",
+      "node_count": 3,
+      "cohesion": 0.7
+    },
+    {
+      "id": "api-routes",
+      "label": "Next.js API Routes",
+      "description": "Next.js API route handlers for preview and revalidation.",
+      "node_count": 2,
+      "cohesion": 0.65
+    }
+  ]
+}

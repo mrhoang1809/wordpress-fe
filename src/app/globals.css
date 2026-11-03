@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 272 50% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 272 50% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 272 50% 8%;
+    --primary: 272 80% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 270 20% 96%;
+    --secondary-foreground: 272 50% 20%;
+    --muted: 270 15% 95%;
+    --muted-foreground: 270 10% 48%;
+    --accent: 285 80% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 270 20% 88%;
+    --input: 270 20% 88%;
+    --ring: 272 80% 50%;
+    --radius: 0.75rem;
+  }
+  .dark {
+    --background: 272 50% 5%;
+    --foreground: 0 0% 97%;
+    --card: 272 40% 9%;
+    --card-foreground: 0 0% 97%;
+    --popover: 272 40% 9%;
+    --popover-foreground: 0 0% 97%;
+    --primary: 272 80% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 272 30% 16%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 272 30% 16%;
+    --muted-foreground: 272 10% 58%;
+    --accent: 285 80% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 272 30% 18%;
+    --input: 272 30% 18%;
+    --ring: 272 80% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .form-input {
+    @apply w-full rounded-xl border border-input bg-background px-3.5 py-2.5 text-sm
+           ring-offset-background placeholder:text-muted-foreground
+           focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2
+           disabled:cursor-not-allowed disabled:opacity-50 transition-colors;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-[0.2em]
+           text-accent-magenta bg-accent-magenta/10 border border-accent-magenta/20
+           px-3.5 py-1.5 rounded-full;
+  }
+
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-300 via-accent-magenta to-accent-pink
+           bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-gradient-to-r from-brand-700 to-accent-magenta
+           hover:from-brand-600 hover:to-accent-pink text-white font-bold
+           px-6 py-3 rounded-full shadow-glow-purple hover:shadow-glow-magenta
+           hover:scale-105 active:scale-95 transition-all duration-200 text-sm;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center gap-2 bg-gradient-to-r from-accent-gold to-amber-400
+           hover:from-yellow-400 hover:to-amber-300 text-brand-900 font-black
+           px-6 py-3 rounded-full shadow-glow-gold hover:scale-105 active:scale-95
+           transition-all duration-200 text-sm;
+  }
+}
+
+/* ─── Base ────────────────────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-be-vietnam), "Be Vietnam Pro", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#9333ea, #d946ef);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d946ef;
+}
+
+/* ─── Mesh gradient ───────────────────────────────────────────────────── */
+.bg-mesh-gradient {
+  background-color: #0d0a1a;
+  background-image:
+    radial-gradient(
+      ellipse at 15% 10%,
+      hsla(285, 80%, 22%, 0.9) 0px,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 85% 5%,
+      hsla(320, 90%, 32%, 0.8) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 90% 90%,
+      hsla(270, 85%, 18%, 0.9) 0px,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 5% 85%,
+      hsla(290, 75%, 25%, 0.8) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      hsla(300, 60%, 15%, 0.5) 0px,
+      transparent 70%
+    );
+}
+
+/* ─── Flip card ──────────────────────────────────────────────────────── */
+.flip-card {
+  perspective: 1200px;
+}
+.flip-card-inner {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* ─── Gradient border util ─────────────────────────────────────────── */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #9333ea, #d946ef, #ec4899);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── Noise texture ────────────────────────────────────────────────── */
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}

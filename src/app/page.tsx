@@ -1,4 +1,5 @@
-﻿import { AnnouncementBar } from "@/components/home/AnnouncementBar";
+﻿import type { Metadata } from "next";
+import { AnnouncementBar } from "@/components/home/AnnouncementBar";
 import { Header } from "@/components/home/Header";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WorkoutSection } from "@/components/home/WorkoutSection";
@@ -22,6 +23,31 @@ import { FloatingContactButtons } from "@/components/home/FloatingContactButtons
  * TrialRegistrationModal provides the modal context used by all child
  * components that open the trial registration form.
  */
+
+export const metadata: Metadata = {
+  title: "Curves Vietnam - Phòng Tập 30 Phút Dành Cho Phụ Nữ",
+  description:
+    "Phòng tập chuyên biệt dành riêng cho phụ nữ. Bài tập 3 trong 1 trong 30 phút giúp đốt cháy đến 500 calories. Không đàn ông, không gương soi, không trang điểm. Miễn phí tư vấn và hướng dẫn.",
+  keywords: [
+    "phòng tập nữ",
+    "gym phụ nữ",
+    "tập luyện 30 phút",
+    "giảm cân",
+    "cải thiện sức khỏe",
+    "Curves Vietnam",
+  ],
+  openGraph: {
+    title: "Curves Vietnam - Phòng Tập 30 Phút Dành Cho Phụ Nữ",
+    description:
+      "Bài tập 3 trong 1: luyện tim mạch + sức mạnh + giãn cơ. Đốt cháy đến 500 calories trong 30 phút.",
+    images: ["/logo.png"],
+  },
+  robots: { index: true, follow: true },
+  alternates: {
+    canonical: "/",
+  },
+};
+
 export default function HomePage() {
   return (
     <main className="bg-slate-50 text-slate-800 antialiased">

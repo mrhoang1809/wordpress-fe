@@ -1,9 +1,14 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HomeProviders } from "@/components/home/HomeProviders";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
+
+export const metadata: Metadata = {
+  title: "Trang không tồn tại",
+  description: "Chúng tôi không thể tìm thấy trang bạn đang tìm kiếm.",
+  robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
   return (

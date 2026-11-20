@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slugPath = slug.join("/");
   const page = await fetchPage(slugPath);
 
-  if (!page) return { title: "Page not found" };
+  if (!page) return { title: "Trang không tồn tại" };
 
   const settings = await fetchSettings();
   const seoTitle = page.seo.title ?? settings?.defaultSeoTitle ?? page.title;
@@ -40,6 +40,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: seoTitle,
     description: seoDescription,
+    alternates: {
+      canonical: `/${slugPath}`,
+    },
     openGraph: {
       title: seoTitle,
       description: seoDescription,

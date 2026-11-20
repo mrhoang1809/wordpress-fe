@@ -5,10 +5,13 @@ import { Blog } from "@/components/blog/Blog";
 import type { PaginatedResponse, PublicPostCard, Category } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Blog Sức Khỏe & Vóc Dáng | Curves Vietnam",
+  title: "Blog Sức Khỏe & Vóc Dáng",
   description:
     "Cập nhật hàng ngày mẹo giảm mỡ, thực đơn Eat Clean, kiến thức tập luyện 30 phút và câu chuyện truyền cảm hứng từ cộng đồng nữ giới Curves.",
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export const revalidate = 60; // 1 minute

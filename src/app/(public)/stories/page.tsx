@@ -5,10 +5,13 @@ import type { PaginatedResponse, PublicPostCard, Category } from "@/types";
 import { StoriesList } from "@/components/blog/StoriesList";
 
 export const metadata: Metadata = {
-  title: "Câu Chuyện Truyền Cảm Hứng | Curves Vietnam",
+  title: "Câu Chuyện Truyền Cảm Hứng",
   description:
     "Hành trình thay đổi của hàng ngàn hội viên Curves - từ giảm cân, cải thiện sức khỏe đến tìm lại niềm vui sống.",
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: "/stories",
+  },
 };
 
 export const revalidate = 60; // 1 minute

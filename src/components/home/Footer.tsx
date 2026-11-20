@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export function Footer() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    setEmail('');
+    setEmail("");
   };
 
   return (
@@ -22,22 +22,39 @@ export function Footer() {
               <div className="w-8 h-8 rounded-lg bg-accent-magenta flex items-center justify-center text-white font-black text-xl">
                 C
               </div>
-              <span className="text-xl font-black text-white tracking-wider">CURVES VIETNAM</span>
+              <span className="text-xl font-black text-white tracking-wider">
+                CURVES VIETNAM
+              </span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Thương hiệu phòng tập 30 phút dành riêng cho phụ nữ lớn nhất thế giới. Tự hào đồng
-              hành cùng sức khỏe và vẻ đẹp phái nữ Việt Nam.
+              Thương hiệu phòng tập 30 phút dành riêng cho phụ nữ lớn nhất thế
+              giới. Tự hào đồng hành cùng sức khỏe và vẻ đẹp phái nữ Việt Nam.
             </p>
             <div className="flex items-center gap-3 pt-2">
               {[
-                { label: 'Facebook', emoji: '📘' },
-                { label: 'YouTube', emoji: '▶️' },
-                { label: 'Instagram', emoji: '📸' },
+                {
+                  label: "Facebook Curves Lang Ha",
+                  emoji: "📘",
+                  url: "https://www.facebook.com/curveslangha",
+                },
+                {
+                  label: "Facebook Chi Nhánh Hà Đông",
+                  emoji: "📘",
+                  url: "https://www.facebook.com/cn.ha.ong.2025",
+                },
+                {
+                  label: "Facebook Chi Nhánh Trần Duy Hung",
+                  emoji: "📘",
+                  url: "https://www.facebook.com/gym.tran.duy.hung",
+                },
               ].map((s) => (
                 <a
                   key={s.label}
-                  href="#"
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
+                  title={s.label}
                   className="w-8 h-8 rounded-full bg-white/10 hover:bg-accent-magenta flex items-center justify-center text-white transition-colors text-sm"
                 >
                   {s.emoji}
@@ -48,30 +65,39 @@ export function Footer() {
 
           {/* Hours */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider">Giờ Hoạt Động</h4>
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider">
+              Giờ Hoạt Động
+            </h4>
             <div className="text-xs space-y-2 text-slate-300">
               <p className="font-semibold text-pink-300">Thứ 2 - Thứ 6:</p>
               <p>• Ca sáng: 10:30 - 13:00</p>
               <p>• Ca chiều: 16:00 - 19:30</p>
               <p className="font-semibold text-pink-300 pt-1">Thứ 7:</p>
               <p>• Ca sáng: 10:00 - 13:00</p>
-              <p className="text-slate-400 italic pt-1">* Chủ Nhật &amp; Ngày Lễ nghỉ</p>
+              <p className="text-slate-400 italic pt-1">
+                * Chủ Nhật &amp; Ngày Lễ nghỉ
+              </p>
             </div>
           </div>
 
           {/* Links */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider">Liên Kết Nhanh</h4>
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider">
+              Liên Kết Nhanh
+            </h4>
             <ul className="text-xs space-y-2">
               {[
-                ['#about', 'Triết lý 3 Không'],
-                ['#workout', 'Phương pháp 30 phút'],
-                ['#advantages', 'Máy kháng thủy lực'],
-                ['#locations', 'Danh sách chi nhánh'],
-                ['#faq', 'Chính sách hội viên'],
+                ["#about", "Triết lý 3 Không"],
+                ["#workout", "Phương pháp 30 phút"],
+                ["#advantages", "Máy kháng thủy lực"],
+                ["#locations", "Danh sách chi nhánh"],
+                ["#faq", "Chính sách hội viên"],
               ].map(([href, label]) => (
                 <li key={href}>
-                  <a href={href} className="hover:text-pink-300 transition-colors">
+                  <a
+                    href={href}
+                    className="hover:text-pink-300 transition-colors"
+                  >
                     {label}
                   </a>
                 </li>
@@ -81,12 +107,16 @@ export function Footer() {
 
           {/* Newsletter */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider">Đăng Ký Nhận Tin</h4>
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider">
+              Đăng Ký Nhận Tin
+            </h4>
             <p className="text-xs text-slate-400">
               Nhận mẹo chăm sóc sức khỏe &amp; ưu đãi hội viên mới nhất.
             </p>
             {submitted ? (
-              <p className="text-xs text-green-400 font-semibold">✓ Đã đăng ký thành công!</p>
+              <p className="text-xs text-green-400 font-semibold">
+                ✓ Đã đăng ký thành công!
+              </p>
             ) : (
               <form onSubmit={handleNewsletter} className="space-y-2">
                 <input
@@ -109,7 +139,10 @@ export function Footer() {
         </div>
 
         <div className="pt-8 text-center text-xs text-slate-500">
-          <p>© 2026 Curves Vietnam. All rights reserved. Trải nghiệm Gym 30 Phút Cho Phái Nữ.</p>
+          <p>
+            © 2026 Curves Vietnam. All rights reserved. Trải nghiệm Gym 30 Phút
+            Cho Phái Nữ.
+          </p>
         </div>
       </div>
     </footer>

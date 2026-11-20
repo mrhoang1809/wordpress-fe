@@ -1,116 +1,17 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { postsApi, categoriesApi, mediaApi } from "@/lib/api-client";
+import { postsApi, categoriesApi } from "@/lib/api-client";
 import { slugify, resolveMediaUrl } from "@/lib/utils";
 import { ApiError } from "@/lib/api-client";
 import { TiptapEditor } from "@/components/admin/TiptapEditor";
+import { FeaturedImagePicker } from "@/components/admin/FeaturedImagePicker";
 import { Suspense } from "react";
 import type { Category, PaginatedResponse } from "@/types";
-import {
-  ArrowLeft,
-  Save,
-  Eye,
-  Upload,
-  X,
-  ImageIcon,
-  Loader2,
-  EyeIcon,
-} from "lucide-react";
-
-// ─── Featured Image Picker ────────────────────────────────────────────────────
-
-function FeaturedImagePicker({
-  value,
-  onChange,
-}: {
-  value: { id: string; url: string } | null;
-  onChange: (img: { id: string; url: string } | null) => void;
-}) {
-  const [uploading, setUploading] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleFile = async (file: File) => {
-    setUploading(true);
-    try {
-      const media = await mediaApi.upload(file, file.name);
-      onChange({ id: media.id, url: media.url });
-    } catch {
-      alert("Upload thất bại, vui lòng thử lại.");
-    } finally {
-      setUploading(false);
-    }
-  };
-
-  return (
-    <div>
-      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">
-        <ImageIcon className="w-3.5 h-3.5 inline mr-1.5 text-brand-600" />
-        Ảnh đại diện
-      </label>
-      {value ? (
-        <div className="relative group rounded-xl overflow-hidden border border-slate-200">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={resolveMediaUrl(value.url)}
-            alt="Ảnh đại diện"
-            className="w-full h-44 object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={() => inputRef.current?.click()}
-              className="flex items-center gap-1.5 bg-white/90 text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg"
-            >
-              <Upload className="w-3.5 h-3.5" /> Đổi ảnh
-            </button>
-            <button
-              type="button"
-              onClick={() => onChange(null)}
-              className="flex items-center gap-1.5 bg-red-500/90 text-white text-xs font-bold px-3 py-1.5 rounded-lg"
-            >
-              <X className="w-3.5 h-3.5" /> Xóa
-            </button>
-          </div>
-        </div>
-      ) : (
-        <button
-          type="button"
-          onClick={() => inputRef.current?.click()}
-          disabled={uploading}
-          className="w-full h-36 rounded-xl border-2 border-dashed border-slate-200 hover:border-brand-400 bg-slate-50 hover:bg-brand-50 flex flex-col items-center justify-center gap-2 transition-all disabled:opacity-50"
-        >
-          {uploading ? (
-            <Loader2 className="w-8 h-8 text-brand-500 animate-spin" />
-          ) : (
-            <>
-              <Upload className="w-8 h-8 text-slate-300" />
-              <span className="text-xs text-slate-500 font-medium">
-                Nhấn để tải ảnh lên
-              </span>
-              <span className="text-[10px] text-slate-400">
-                PNG, JPG, WEBP · Tối đa 5MB
-              </span>
-            </>
-          )}
-        </button>
-      )}
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        className="hidden"
-        onChange={(e) => {
-          const f = e.target.files?.[0];
-          if (f) handleFile(f);
-          e.target.value = "";
-        }}
-      />
-    </div>
-  );
-}
+import { ArrowLeft, Save, Eye, Loader2, EyeIcon } from "lucide-react";
+import { X } from "lucide-react";
 
 // ─── Preview Modal ────────────────────────────────────────────────────────────
 

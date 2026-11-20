@@ -34,6 +34,13 @@ export const metadata: Metadata = {
       "Bài tập 3 trong 1: luyện tim mạch + sức mạnh + giãn cơ. Đốt cháy đến 500 calories trong 30 phút. Tập luyện trong không gian riêng tư, an toàn, vui vẻ.",
     images: ["/logo.png"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Curves Vietnam - Phòng Tập 30 Phút Cho Phụ Nữ",
+    description:
+      "Bài tập 3 trong 1: luyện tim mạch + sức mạnh + giãn cơ. Đốt cháy đến 500 calories trong 30 phút.",
+    images: ["/logo.png"],
+  },
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://curvesvietnam.com.vn",
   ),

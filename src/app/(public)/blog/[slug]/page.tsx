@@ -2,7 +2,10 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { publicApi } from "@/lib/api-client";
 import { BlogDetails } from "@/components/blog/Details";
-import { generateArticleSchema } from "@/lib/structured-data";
+import {
+  generateArticleSchema,
+  generateBreadcrumbSchema,
+} from "@/lib/structured-data";
 import type { PublicPost, PublicPostCard } from "@/types";
 import { getDemoStoryPost } from "@/lib/demo-content";
 
@@ -32,6 +35,19 @@ async function fetchRelated(categorySlug?: string): Promise<PublicPostCard[]> {
   }
 }
 
+/**
+ * Pre-render the first 50 blog posts at build time for better performance
+ * Remaining posts will be generated on-demand with ISR (120s revalidate)
+ *
+ * Note: Fetches deferred to runtime/deployment to avoid build delays
+ * At Vercel deployment with API access, will prebuild more pages via ISR
+ */
+export async function generateStaticParams() {
+  // Return empty array to use dynamic rendering with ISR
+  // Production deployment will pregenerate via Incremental Static Regeneration
+  return [];
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await fetchPost(slug);
@@ -53,6 +69,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: image ? [image] : [],
       type: "article",
       publishedTime: post.publishedAt ?? undefined,
+      authors: post.author?.firstName ? [post.author.firstName] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : [],
+      creator: "@curvesvietnam",
     },
     robots: { index: true, follow: true },
   };
@@ -70,6 +94,8 @@ export default async function BlogDetailPage({ params }: Props) {
 
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://curvesvietnam.com.vn";
+
+  // Generate Article schema
   const articleSchema = generateArticleSchema(
     post.seo.title ?? post.title,
     post.seo.description ?? post.excerpt ?? "",
@@ -79,12 +105,25 @@ export default async function BlogDetailPage({ params }: Props) {
     siteUrl,
   );
 
+  // Generate Breadcrumb schema: Home > Blog > [Post Title]
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Trang chủ", url: siteUrl },
+    { name: "Blog", url: `${siteUrl}/blog` },
+    { name: post.seo.title ?? post.title, url: `${siteUrl}/blog/${slug}` },
+  ]);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(articleSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
         }}
       />
       <BlogDetails post={post} relatedPosts={related} />

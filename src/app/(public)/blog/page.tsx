@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { publicApi } from "@/lib/api-client";
 import { Blog } from "@/components/blog/Blog";
+import { generateBreadcrumbSchema } from "@/lib/structured-data";
 import type { PaginatedResponse, PublicPostCard, Category } from "@/types";
 
 export const metadata: Metadata = {
@@ -11,6 +12,19 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   alternates: {
     canonical: "/blog",
+  },
+  openGraph: {
+    title: "Blog Sức Khỏe & Vóc Dáng | Curves Vietnam",
+    description:
+      "Cập nhật hàng ngày mẹo giảm mỡ, thực đơn Eat Clean, kiến thức tập luyện 30 phút.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Blog Sức Khỏe & Vóc Dáng",
+    description:
+      "Cập nhật hàng ngày mẹo giảm mỡ, thực đơn Eat Clean, kiến thức tập luyện 30 phút.",
+    creator: "@curvesvietnam",
   },
 };
 
@@ -54,20 +68,37 @@ export default async function BlogPage({ searchParams }: Props) {
   const params = await searchParams;
   const { posts, categories } = await fetchData(params);
 
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://curvesvietnam.com.vn";
+
+  // Generate breadcrumb schema: Home > Blog
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Trang chủ", url: siteUrl },
+    { name: "Blog", url: `${siteUrl}/blog` },
+  ]);
+
   return (
-    <Suspense
-      fallback={
-        <div className="py-24 text-center text-muted-foreground">
-          Đang tải...
-        </div>
-      }
-    >
-      <Blog
-        initialData={posts}
-        categories={categories}
-        initialCategory={params.category ?? "tin-tuc"}
-        initialSearch={params.search ?? ""}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
       />
-    </Suspense>
+      <Suspense
+        fallback={
+          <div className="py-24 text-center text-muted-foreground">
+            Đang tải...
+          </div>
+        }
+      >
+        <Blog
+          initialData={posts}
+          categories={categories}
+          initialCategory={params.category ?? "tin-tuc"}
+          initialSearch={params.search ?? ""}
+        />
+      </Suspense>
+    </>
   );
 }

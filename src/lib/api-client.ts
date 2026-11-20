@@ -290,6 +290,20 @@ export const publicApi = {
   listLocations: () =>
     request<import("@/types").Location[]>("/public/locations", { auth: false }),
 
+  /** List all published pages for sitemap and discovery */
+  listPages: (params?: { page?: number; pageSize?: number }) => {
+    const qs = new URLSearchParams();
+    if (params?.page) qs.set("page", String(params.page));
+    if (params?.pageSize) qs.set("pageSize", String(params.pageSize));
+    return request<
+      import("@/types").PaginatedResponse<{
+        slug: string;
+        title: string;
+        publishedAt?: string;
+      }>
+    >(`/public/pages?${qs.toString()}`, { auth: false });
+  },
+
   getPage: (slug: string) =>
     request<import("@/types").PublicPage>(`/public/pages/${slug}`, {
       auth: false,
